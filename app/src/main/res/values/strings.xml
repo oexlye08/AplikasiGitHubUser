@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Aplikasi GitHub User</string>
+    <string name="repository">Repository</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="detail_user">Detail User</string>
+    <string name="username">Username :</string>
+    <string name="location">Location :</string>
+    <string name="list_user_github">List User Github</string>
+    <string name="share">Share</string>
+    <string name="to_open_github_profile">to open github profile</string>
 </resources>

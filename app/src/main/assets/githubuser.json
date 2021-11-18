@@ -1,5 +1,6 @@
 {
-  "users": [{
+  "users": [
+    {
     "username": "JakeWharton",
     "name": "Jake Wharton",
     "avatar": "@drawable/user1",
