@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.my.okisulton.aplikasigithubuser.databinding.ListUserBinding
@@ -36,9 +37,9 @@ class UserAdapter(
         holder.binding.tvName.text = data.name
         holder.binding.tvUsername.text = data.username
 
-        val imageResorce: Int =
+        val imageResource: Int =
             itemView.context.resources.getIdentifier(uri, null, itemView.context.packageName)
-        val res: Drawable = itemView.context.resources.getDrawable(imageResorce)
+        val res: Drawable = itemView.context.resources.getDrawable(imageResource)
 
         Glide.with(holder.binding.root)
             .load(res)
@@ -51,6 +52,7 @@ class UserAdapter(
     }
 
     override fun getItemCount(): Int = listUser.size
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<User.UsersItem>) {

@@ -12,17 +12,15 @@ import id.my.okisulton.aplikasigithubuser.model.User
 
 class DetailUserActivity : AppCompatActivity() {
     private val TAG: String = "DetailUserActivity"
-    private lateinit var binding: ActivityDetailUserBinding
+    private var _binding: ActivityDetailUserBinding? = null
+    private val binding get() = _binding
     var username: String = ""
 
-    companion object {
-        const val DETAIL_USER = "detail_user"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailUserBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
     }
 
     override fun onStart() {
@@ -32,21 +30,23 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
-        binding.backButton.setOnClickListener { finish() }
-        binding.btnShare.setOnClickListener {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "https://github.com/$username")
-                type = "text/plain"
+        binding?.apply {
+            backButton.setOnClickListener { finish() }
+            btnShare.setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "https://github.com/$username")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
             }
 
-            val shareIntent = Intent.createChooser(sendIntent, null)
-            startActivity(shareIntent)
-        }
-
-        binding.fabOpenGithub.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/$username"))
-            startActivity(browserIntent)
+            fabOpenGithub.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/$username"))
+                startActivity(browserIntent)
+            }
         }
     }
 
@@ -60,18 +60,26 @@ class DetailUserActivity : AppCompatActivity() {
 
         username = data.username.toString()
 
-        Glide.with(this)
-            .load(res)
-            .circleCrop()
-            .into(binding.imgAvatar)
 
-        binding.tvNameDetail.text = data.name
-        binding.tvCompanyDetail.text = data.company
-        binding.tvRepositoryDetail.text = data.repository.toString()
-        binding.tvFollowerDetail.text = data.follower.toString()
-        binding.tvFollowingDetail.text = data.following.toString()
-        binding.tvUsernameDetail.text = data.username
-        binding.tvLocationDetail.text = data.location
+        binding?.apply {
+            tvNameDetail.text = data.name
+            tvCompanyDetail.text = data.company
+            tvRepositoryDetail.text = data.repository.toString()
+            tvFollowerDetail.text = data.follower.toString()
+            tvFollowingDetail.text = data.following.toString()
+            tvUsernameDetail.text = data.username
+            tvLocationDetail.text = data.location
+
+            Glide.with(applicationContext)
+                .load(res)
+                .circleCrop()
+                .into(imgAvatar)
+        }
+    }
+
+
+    companion object {
+        const val DETAIL_USER = "detail_user"
     }
 
 }

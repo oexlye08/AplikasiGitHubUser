@@ -9,4 +9,6 @@
     <string name="list_user_github">List User Github</string>
     <string name="share">Share</string>
     <string name="to_open_github_profile">to open github profile</string>
+    <string name="button_to_back_activity">Button to back activity</string>
+    <string name="image_show_avatar">Image show avatar</string>
 </resources>

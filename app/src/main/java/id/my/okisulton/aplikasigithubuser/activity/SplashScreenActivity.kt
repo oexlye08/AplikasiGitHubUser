@@ -10,11 +10,14 @@ import id.my.okisulton.aplikasigithubuser.databinding.ActivitySplashScreenBindin
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySplashScreenBinding
+    private var _binding: ActivitySplashScreenBinding? = null
+    private val binding get() = _binding
+    private val delay: Long = 3000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         supportActionBar?.hide()
@@ -24,7 +27,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onStart()
         Handler().postDelayed({
             moveActivity()
-        }, 3000)
+        }, delay)
     }
 
     private fun moveActivity() {

@@ -1,6 +1,9 @@
 package id.my.okisulton.aplikasigithubuser.utils
 
 import android.content.Context
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import java.io.IOException
 
 /**
@@ -17,3 +20,4 @@ fun getDataFromAsset(context: Context, filename: String): String? {
     }
     return jsonString
 }
+

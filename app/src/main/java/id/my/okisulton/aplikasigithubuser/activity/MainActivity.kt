@@ -14,13 +14,14 @@ import id.my.okisulton.aplikasigithubuser.utils.getDataFromAsset
 
 class MainActivity : AppCompatActivity() {
     private val TAG: String = "MainActivity"
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding
     private lateinit var userAdapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
     }
 
     override fun onStart() {
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        binding.rvListUser.apply {
+        binding?.rvListUser?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = userAdapter
         }
